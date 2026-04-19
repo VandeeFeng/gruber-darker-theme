@@ -61,6 +61,12 @@
       (gruber-darker-niagara-1 "#565f73")
       (gruber-darker-niagara   "#96a6c8")
       (gruber-darker-wisteria  "#9e95c7")
+      (gruber-darker-comment   "#787878")
+      (gruber-darker-string    "#A1D08E")
+      (gruber-darker-keyword   "#FFA657")
+      (gruber-darker-blue      "#79C0FF")
+      (gruber-darker-block-bg  "#252525")
+      (gruber-darker-block-fg  "#757575")
       )
   (custom-theme-set-variables
    'gruber-darker
@@ -91,16 +97,17 @@
    ;; Basic Coloring (or Uncategorized)
    `(border ((t ,(list :background gruber-darker-bg-1
                        :foreground gruber-darker-bg+2))))
-   `(cursor ((t (:background ,gruber-darker-yellow))))
-   `(default ((t ,(list :foreground gruber-darker-fg
-                        :background gruber-darker-bg))))
+   `(cursor ((t (:background "orange"))))
+   `(default ((t (:foreground "#d1d5db"
+                   :background "#1D1F21"))))
    `(fringe ((t ,(list :background 'unspecified
                        :foreground gruber-darker-bg+2))))
    `(vertical-border ((t ,(list :foreground gruber-darker-bg+2))))
    `(link ((t (:foreground ,gruber-darker-niagara :underline t))))
    `(link-visited ((t (:foreground ,gruber-darker-wisteria :underline t))))
-   `(match ((t (:background ,gruber-darker-bg+4))))
-   `(shadow ((t (:foreground ,gruber-darker-bg+4))))
+   `(match ((t (:background unspecified :foreground ,gruber-darker-blue))))
+   `(popup-tip-face ((t (:background "#1D1F21" :foreground "#d1d5db"))))
+   `(shadow ((t (:foreground "gray70"))))
    `(minibuffer-prompt ((t (:foreground ,gruber-darker-niagara))))
    `(region ((t (:background ,gruber-darker-bg+3 :foreground unspecified))))
    `(secondary-selection ((t ,(list :background gruber-darker-bg+3
@@ -175,17 +182,17 @@
    `(eshell-ls-symlink ((t (:foreground ,gruber-darker-yellow))))
 
    ;; Font Lock
-   `(font-lock-builtin-face ((t (:foreground ,gruber-darker-yellow))))
-   `(font-lock-comment-face ((t (:foreground ,gruber-darker-brown))))
-   `(font-lock-comment-delimiter-face ((t (:foreground ,gruber-darker-brown))))
+   `(font-lock-builtin-face ((t (:weight normal :foreground ,gruber-darker-blue))))
+   `(font-lock-comment-face ((t (:foreground ,gruber-darker-comment))))
+   `(font-lock-comment-delimiter-face ((t (:foreground ,gruber-darker-comment))))
    `(font-lock-constant-face ((t (:foreground ,gruber-darker-quartz))))
-   `(font-lock-doc-face ((t (:foreground ,gruber-darker-green))))
+   `(font-lock-doc-face ((t (:weight normal :foreground ,gruber-darker-comment))))
    `(font-lock-doc-string-face ((t (:foreground ,gruber-darker-green))))
    `(font-lock-function-name-face ((t (:foreground ,gruber-darker-niagara))))
-   `(font-lock-keyword-face ((t (:foreground ,gruber-darker-yellow :bold t))))
+   `(font-lock-keyword-face ((t (:weight normal :foreground ,gruber-darker-keyword))))
    `(font-lock-preprocessor-face ((t (:foreground ,gruber-darker-quartz))))
    `(font-lock-reference-face ((t (:foreground ,gruber-darker-quartz))))
-   `(font-lock-string-face ((t (:foreground ,gruber-darker-green))))
+   `(font-lock-string-face ((t (:foreground ,gruber-darker-string))))
    `(font-lock-type-face ((t (:foreground ,gruber-darker-quartz))))
    `(font-lock-variable-name-face ((t (:foreground ,gruber-darker-fg+1))))
    `(font-lock-warning-face ((t (:foreground ,gruber-darker-red))))
@@ -262,12 +269,12 @@
    `(jabber-activity-personal-face ((t (:foreground ,gruber-darker-yellow :bold t))))
 
    ;; Line Highlighting
-   `(highlight ((t (:background ,gruber-darker-bg+1 :foreground unspecified))))
+   `(highlight ((t (:background "#5A5F66" :foreground unspecified))))
    `(highlight-current-line-face ((t ,(list :background gruber-darker-bg+1
                                             :foreground 'unspecified))))
 
    ;; line numbers
-   `(line-number ((t (:inherit default :foreground ,gruber-darker-bg+4))))
+   `(line-number ((t (:inherit default :foreground "gray30"))))
    `(line-number-current-line ((t (:inherit line-number :foreground ,gruber-darker-yellow))))
 
    ;; Linum
@@ -298,21 +305,39 @@
    `(message-header-name ((t (:foreground ,gruber-darker-green))))
 
    ;; Mode Line
-   `(mode-line ((t ,(list :background gruber-darker-bg+1
-                          :foreground gruber-darker-white))))
+   `(mode-line ((t (:background ,gruber-darker-bg+1
+                    :foreground ,gruber-darker-white
+                    :box nil))))
    `(mode-line-buffer-id ((t ,(list :background gruber-darker-bg+1
                                     :foreground gruber-darker-white))))
-   `(mode-line-inactive ((t ,(list :background gruber-darker-bg+1
-                                   :foreground gruber-darker-quartz))))
+   `(mode-line-inactive ((t (:background ,gruber-darker-bg+1
+                             :foreground ,gruber-darker-quartz
+                             :box nil))))
 
    ;; Neo Dir
    `(neo-dir-link-face ((t (:foreground ,gruber-darker-niagara))))
 
    ;; Org Mode
    `(org-agenda-structure ((t (:foreground ,gruber-darker-niagara))))
+   `(org-block ((t (:background ,gruber-darker-block-bg :extend t))))
+   `(org-block-begin-line ((t (:background ,gruber-darker-block-bg :foreground ,gruber-darker-block-fg :extend t :italic t))))
+   `(org-block-end-line ((t (:background ,gruber-darker-block-bg :foreground ,gruber-darker-block-fg :extend t :italic t))))
+   `(org-code ((t (:foreground "#da8548" :weight normal))))
    `(org-column ((t (:background ,gruber-darker-bg-1))))
    `(org-column-title ((t (:background ,gruber-darker-bg-1 :underline t :weight bold))))
+   `(org-date ((t (:foreground "#61AFEF" :background unspecified :weight normal))))
+   `(org-document-title ((t (:inherit default :weight bold :height 1.5 :underline nil))))
    `(org-done ((t (:foreground ,gruber-darker-green))))
+   `(org-level-1 ((t (:height 1.4 :weight normal))))
+   `(org-level-2 ((t (:height 1.3 :weight normal))))
+   `(org-level-3 ((t (:height 1.2 :weight normal))))
+   `(org-level-4 ((t (:height 1.1 :weight normal))))
+   `(org-level-5 ((t (:height 1.05 :weight normal))))
+   `(org-level-6 ((t (:inherit outline-6 :height 1.05 :weight normal))))
+   `(org-level-7 ((t (:inherit outline-7 :height 1.0 :weight normal))))
+   `(org-level-8 ((t (:inherit outline-8 :height 1.0 :weight normal))))
+   `(org-meta-line ((t (:inherit font-lock-comment-face :height 1.1))))
+   `(org-tag ((t (:foreground "#8B949E" :weight normal :height 0.9 :inherit nil :slant normal))))
    `(org-todo ((t (:foreground ,gruber-darker-red-1))))
    `(org-upcoming-deadline ((t (:foreground ,gruber-darker-yellow))))
 
@@ -329,8 +354,10 @@
    `(sh-quoted-exec ((t (:foreground ,gruber-darker-red+1))))
 
    ;; Show Paren
-   `(show-paren-match-face ((t (:background ,gruber-darker-bg+4))))
-   `(show-paren-mismatch-face ((t (:background ,gruber-darker-red-1))))
+   `(show-paren-match ((t (:background "SteelBlue3" :foreground "gray90"))))
+   `(show-paren-match-face ((t (:background "SteelBlue3" :foreground "gray90"))))
+   `(show-paren-mismatch ((t (:background "HotPink3" :foreground "white"))))
+   `(show-paren-mismatch-face ((t (:background "HotPink3" :foreground "white"))))
 
    ;; Slime
    `(slime-repl-inputed-output-face ((t (:foreground ,gruber-darker-red))))
